@@ -9,7 +9,7 @@ import { api, useStore } from "@/state/store";
 import type { LocaleKey } from "@/locales";
 import type { TraceList, TraceRootSummary } from "../../shared/usage-trace";
 import { BotAvatar } from "./Avatar";
-import { PlanUsage } from "./PlanUsage";
+import { QuotaDashboard } from "./QuotaDashboard";
 import { Select } from "./Select";
 import { UsageBudgetCards, type BudgetState } from "./UsageBudget";
 import { TraceView } from "./usage/TraceView";
@@ -253,7 +253,7 @@ export function UsageSection() {
           </section>
         </>
       )}
-      <PlanUsage />
+      <QuotaDashboard />
       <UsageBudgetCards budget={budget} />
     </div>
   );

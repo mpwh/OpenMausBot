@@ -7,14 +7,14 @@ import { Card, SIMPLE_CARD } from "./SettingsPrimitives";
 import { UsageSummaryCard } from "./CloudUsageMeter";
 import { formatPlanSpend, type PlanSpend } from "@/lib/plan-spend";
 
-interface PlanWindow {
+export interface PlanWindow {
   available: boolean;
   remainingPercent: number | null;
   usedPercent: number | null;
   resetsAt: string | null;
 }
 
-interface PlanExtra {
+export interface PlanExtra {
   label: string;
   remainingPercent: number;
   usedPercent: number;
@@ -22,12 +22,12 @@ interface PlanExtra {
   spend?: PlanSpend;
 }
 
-interface PlanModelUsage {
+export interface PlanModelUsage {
   name: string;
   windows: PlanExtra[];
 }
 
-interface PlanProvider {
+export interface PlanProvider {
   id: string;
   name: string;
   driver: string;
@@ -40,12 +40,12 @@ interface PlanProvider {
   models?: PlanModelUsage[];
 }
 
-interface PlanUsageReport {
+export interface PlanUsageReport {
   fetchedAt: string;
   providers: PlanProvider[];
 }
 
-function formatResetDistance(resetsAt: string | null, now: number): string | null {
+export function formatResetDistance(resetsAt: string | null, now: number): string | null {
   if (!resetsAt) return null;
   const at = Date.parse(resetsAt);
   if (!Number.isFinite(at) || at <= now) return null;
@@ -78,34 +78,34 @@ function dueResetDeadlines(report: PlanUsageReport, now: number, seen: Set<strin
   return due;
 }
 
-function usageTone(used: number): string {
+export function usageTone(used: number): string {
   if (used >= 90) return "bg-danger";
   if (used >= 70) return "bg-warning";
   return "bg-success";
 }
 
-function windowLabel(label: string): string {
+export function windowLabel(label: string): string {
   if (label === "5-hour") return t("planUsage.fiveHour");
   if (label === "Weekly") return t("planUsage.weekly");
   if (label === "Monthly spend") return t("planUsage.monthlySpend");
   return label;
 }
 
-function providerLabel(provider: Pick<PlanProvider, "name">): string {
+export function providerLabel(provider: Pick<PlanProvider, "name">): string {
   const normalized = provider.name.trim().toLowerCase();
   if (normalized === "chatgpt plan") return t("planUsage.provider.chatgptPlan");
   if (normalized === "claude (api key)") return t("planUsage.provider.claudeApiKey");
   return provider.name;
 }
 
-function providerError(provider: Pick<PlanProvider, "error">): string | null {
+export function providerError(provider: Pick<PlanProvider, "error">): string | null {
   const message = provider.error?.trim();
   if (!message) return null;
   const signIn = /^Sign in again in (.+)$/i.exec(message);
   return signIn ? t("planUsage.signInAgain", { provider: providerLabel({ name: signIn[1]! }) }) : message;
 }
 
-function WindowRow({
+export function WindowRow({
   label,
   window,
   now,
@@ -151,7 +151,7 @@ function WindowRow({
   );
 }
 
-function usePlanUsage() {
+export function usePlanUsage() {
   const [report, setReport] = useState<PlanUsageReport | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
