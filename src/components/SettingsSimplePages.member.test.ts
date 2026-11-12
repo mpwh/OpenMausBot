@@ -10,6 +10,7 @@ vi.mock("./EnginesSettings", () => ({ EnginesSettings: () => "AI ACCOUNTS" }));
 vi.mock("./NewBotDialog", () => ({ DefaultBotSettings: () => "NEW BOT DEFAULTS" }));
 vi.mock("./LocalComputerSection", () => ({ LocalComputerSection: () => "CLOUD DESKTOPS" }));
 vi.mock("./UsageSection", () => ({ UsageSection: () => "USAGE TABLE" }));
+vi.mock("./QuotaDashboard", () => ({ QuotaDashboard: () => "QUOTA DASHBOARD" }));
 vi.mock("./PlanUsage", () => ({ PlanUsageSummary: () => "PLAN USAGE" }));
 vi.mock("./CloudUsageMeter", () => ({ useCloudUsageSettings: () => ({ usage: null, upgrade: null, dialog: null }), CloudUsageDetails: () => null, CloudUsageSummaryView: () => null }));
 vi.mock("./ProIntroduction", () => ({ useCloudPlan: () => null, CloudPlanRow: () => null, CloudPlanFootnote: () => null }));
@@ -32,7 +33,7 @@ beforeEach(() => { fixture.admin = false; });
 
 it("shows a session without the admin scope a plain sentence instead of the installation's AI, computers and usage", () => {
   const html = pages();
-  for (const hidden of ["AI ACCOUNTS", "NEW BOT DEFAULTS", "KEYS", "CLOUD DESKTOPS", "USAGE TABLE", "PLAN USAGE"]) expect(html).not.toContain(hidden);
+  for (const hidden of ["AI ACCOUNTS", "NEW BOT DEFAULTS", "KEYS", "CLOUD DESKTOPS", "USAGE TABLE", "PLAN USAGE", "QUOTA DASHBOARD"]) expect(html).not.toContain(hidden);
   expect(html).toContain("Only an admin of this installation can change this.");
   expect(html).toContain("Only an admin of this installation can see usage.");
 });

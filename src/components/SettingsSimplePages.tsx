@@ -23,6 +23,7 @@ import { CloudPlanRow, CloudPlanFootnote, useCloudPlan } from "./ProIntroduction
 import { CloudUsageDetails, CloudUsageSummaryView, useCloudUsageSettings } from "./CloudUsageMeter";
 import { Card, SettingRow, SettingsDisclosureRow, SettingsGroup, SettingsRows } from "./SettingsPrimitives";
 import { UsageSection } from "./UsageSection";
+import { QuotaDashboard } from "./QuotaDashboard";
 import { PlanUsageSummary } from "./PlanUsage";
 import { SkinPicker } from "./SkinPicker";
 import { useSkinChoice } from "./ThemeRow";
@@ -243,6 +244,7 @@ export function SimpleBillingPage({ has, disclose, cloudAccount }: { has: Has; d
       <div data-settings-block="usage" className="scroll-mt-4">
         {usage ? <CloudUsageSummaryView usage={usage} upgrade={upgrade}>{dialog}</CloudUsageSummaryView> : <AdminOnly note="settings.adminOnly.usage"><PlanUsageSummary /></AdminOnly>}
       </div>
+      {has("quota") && <div data-settings-block="quota" className="scroll-mt-4"><AdminOnly note="settings.adminOnly.usage"><QuotaDashboard /></AdminOnly></div>}
       {(usage || has("usage")) && (
         <SettingsDisclosureRow title={t("settings.simple.billing.limits")} {...disclose("billing-limits")}>
           {usage && <CloudUsageDetails usage={usage} upgrade={upgrade} />}

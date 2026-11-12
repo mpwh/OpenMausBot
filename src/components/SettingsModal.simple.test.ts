@@ -285,7 +285,7 @@ describe("Settings in Simple mode", () => {
     fixture.section = "cloudAccount";
     const html = render();
     expect(currentPage(html)).toBe("billing");
-    expect(blocks(html)).toEqual(["usage", "cloudAccount"]);
+    expect(blocks(html)).toEqual(["usage", "quota", "cloudAccount"]);
     expect(html.indexOf("See all limits")).toBeLessThan(html.indexOf("MARKER:cloudAccount;"));
     expect(placement(html, "MARKER:usage;")).toBe("folded");
     expect(groupLabels(html)).toContain("Plan");

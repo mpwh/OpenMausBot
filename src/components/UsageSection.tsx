@@ -9,7 +9,6 @@ import { api, useStore } from "@/state/store";
 import type { LocaleKey } from "@/locales";
 import type { TraceList, TraceRootSummary } from "../../shared/usage-trace";
 import { BotAvatar } from "./Avatar";
-import { QuotaDashboard } from "./QuotaDashboard";
 import { Select } from "./Select";
 import { UsageBudgetCards, type BudgetState } from "./UsageBudget";
 import { TraceView } from "./usage/TraceView";
@@ -212,7 +211,6 @@ export function UsageSection() {
 
   return (
     <div className="flex flex-col gap-4" data-testid="usage-page">
-      <QuotaDashboard />
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
         <p className="min-w-0 flex-1 text-[13px] leading-relaxed text-ink-secondary">{t("usage.page.subtitle")}</p>
         <div className="flex items-center gap-2">

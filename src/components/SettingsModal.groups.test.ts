@@ -102,7 +102,7 @@ describe("Settings rail groups", () => {
     expect(SETTINGS_GROUPS.map((group) => group.id)).toEqual(["you", "ai", "computers", "account"]);
     const ids = SECTIONS.map((entry) => entry.id);
     expect(new Set(ids).size).toBe(ids.length);
-    expect(ids).toHaveLength(21); // 16 + the shared Skills library (AI group) + Image generation (AI) + Logins (Devices) + Import and a team's Bot access (Account)
+    expect(ids).toHaveLength(22); // 16 + the shared Skills library (AI group) + Image generation (AI) + Logins (Devices) + Import and a team's Bot access (Account) + Quota (Account)
     for (const entry of SECTIONS) expect(SETTINGS_GROUPS.map((group) => group.id)).toContain(entry.group);
   });
 
@@ -115,7 +115,7 @@ describe("Settings rail groups", () => {
       you: ["general", "appearance", "companion"],
       ai: ["engines", "connections", "decisionModel", "imageGeneration"],
       computers: ["desktopWorkspaces", "computer", "logins"],
-      account: ["cloudAccount", "organization", "usage", "backups", "import", "experimental"],
+      account: ["cloudAccount", "organization", "quota", "usage", "backups", "import", "experimental"],
     });
     expect(html).toContain('<optgroup label="AI">');
   });
@@ -123,7 +123,7 @@ describe("Settings rail groups", () => {
   it("keeps the browser-only pages for a hosted workspace's admins", () => {
     fixture.ownerOrAdmin = true;
     const groups = rail(render());
-    expect(groups.account).toEqual(["usage", "backups", "import", "people", "activity", "experimental"]);
+    expect(groups.account).toEqual(["quota", "usage", "backups", "import", "people", "activity", "experimental"]);
     expect(Object.values(groups).flat()).not.toContain("desktopWorkspaces");
     expect(Object.values(groups).flat()).not.toContain("cloudAccount");
   });

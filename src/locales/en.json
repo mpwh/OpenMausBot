@@ -3970,6 +3970,7 @@
   "keys.vps.aria": "Self-hosted VPS SSH config alias",
   "keys.vps.removeAlias": "Remove the saved alias",
   "usage.title": "Usage",
+  "settings.section.quota": "Quota",
   "quota.title": "AI quota",
   "quota.subtitle": "Every signed-in Claude, ChatGPT, Grok and OpenCode account, with what is left in each window.",
   "quota.group.claude": "Claude",

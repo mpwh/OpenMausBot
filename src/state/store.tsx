@@ -521,7 +521,7 @@ export type AppSettingsSection =
   | "remote"
   | "computer"
   | "logins"
-  | "usage"
+  | "quota" | "usage"
   | "people" | "botAccess"
   | "activity"
   | "backups"
